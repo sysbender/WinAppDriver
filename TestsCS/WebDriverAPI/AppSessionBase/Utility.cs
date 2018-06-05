@@ -62,12 +62,34 @@ namespace WebDriverAPI.AppSessionBase
 
         public static WindowsElement GetOrphanedElement()
         {
-            // re-initalize orphaned sessin and element if they are comprimised
+            // re-initalize orphaned session and element if they are comprimised
             if(orphanedSession == null || orphanedElement == null)
             {
                 InitializeOrphanedSessoin();
             }
             return orphanedElement;
+        }
+
+
+        public static WindowsDriver<WindowsElement> GetOrphanedSession()
+        {
+            // re-initalize orphaned sessoin and element if they are compromized
+            if(orphanedSession ==null ||orphanedElement == null || string.IsNullOrEmpty(orphanedWindowHandle))
+            {
+                InitializeOrphanedSessoin();
+            }
+            return orphanedSession;
+        }
+
+
+        public static string GetOrphanedWindowHandle()
+        {
+            // re-initalize orphaned sessoin and element if they are compromized
+            if (orphanedSession == null || orphanedElement == null || string.IsNullOrEmpty(orphanedWindowHandle))
+            {
+                InitializeOrphanedSessoin();
+            }
+            return orphanedWindowHandle;
         }
 
         private static void InitializeOrphanedSessoin()
