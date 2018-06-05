@@ -73,31 +73,44 @@ namespace WebDriverAPI.AppSessionBase
 
         }
 
+        private static void s(int s)
+        {
+            //Thread.Sleep(TimeSpan.FromSeconds(s));
+        }
 
         protected static WindowsElement GetStaleElement()
         {
             session.FindElementByAccessibilityId("ClearMemoryButton").Click();
+            s(2);
             session.FindElementByAccessibilityId("clearButton").Click();
+            s(2);
             session.FindElementByAccessibilityId("memButton").Click();
+            s(2);
 
             try
             {
                 //locate the memory pivot item tab that is displayed in expanded mode
                 session.FindElementByAccessibilityId("MemoryLabel").Click();
+                s(2);
             }
             catch
             {
                 // open the memory flyout when the calculator is in compact mode
                 session.FindElementByAccessibilityId("MemoryButton").Click();
+                s(2);
             }
 
 
             Thread.Sleep(TimeSpan.FromSeconds(1));
+            s(2);
             WindowsElement staleElement = session.FindElementByAccessibilityId("MemoryListView").FindElementByName("0") as WindowsElement;
-
+            s(2);
             session.FindElementByAccessibilityId("ClearMemory").Click();
+            s(2);
             header.Click();
+            s(2);
             Thread.Sleep(TimeSpan.FromSeconds(1.5));
+            s(2);
             return staleElement;
 
         }

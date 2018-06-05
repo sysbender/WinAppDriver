@@ -18,6 +18,7 @@ namespace WebDriverAPI.TestCalculator
         [ClassInitialize()]
         public static void MyClassInitialize(TestContext context)
         {
+            context.WriteLine("****************************************");
             Setup(context);
 
         }
@@ -30,7 +31,22 @@ namespace WebDriverAPI.TestCalculator
 
         }
 
- 
+
+
+
+        private TestContext testContextInstance;
+
+        /// <summary>
+        ///  Gets or sets the test context which provides
+        ///  information about and functionality for the current test run.
+        ///</summary>
+        public TestContext TestContext
+        {
+            get { return testContextInstance; }
+            set { testContextInstance = value; }
+        }
+
+
         #endregion
 
         [TestMethod]
@@ -45,6 +61,24 @@ namespace WebDriverAPI.TestCalculator
 
 
 
+        [TestMethod]
+        public void GetElementTageNameError_staleElement()
+        {
 
+
+            Console.WriteLine("===========hahaha==============");
+            try
+            {
+                var tagName = GetStaleElement().TagName;
+                Assert.Fail("Exception should have been thrown");
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual(ErrorStrings.StaleElementReference, ex.Message);
+            }
+
+
+        }
     }
 }
