@@ -75,6 +75,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Common\CommonSettings.cs" />
+    <Compile Include="Common\PageSource.cs" />
     <Compile Include="Radar\Tests\UnitTest1.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="WebDriverApiExtensions.cs" />
