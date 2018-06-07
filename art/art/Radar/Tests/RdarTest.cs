@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using art.Radar.Pages;
 namespace art.Radar.Tests
 {
     [TestClass]
@@ -23,6 +23,10 @@ namespace art.Radar.Tests
         [TestMethod]
         public void TestMethod1()
         {
+            var page = new LauncherPage(session);
+            var text = page.getSelectedProjectName();
+            Console.Out.WriteLine("---------------------------------------------");
+            Console.Out.WriteLine(text);
         }
     }
 }

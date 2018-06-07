@@ -5,6 +5,7 @@ using OpenQA.Selenium.Remote;
 using System;
 using System.Threading;
 using Art;
+using art.Common;
 using System.Xml;
 using Art.Common;
 
@@ -30,10 +31,18 @@ namespace art.Radar
                 Utility.SleepSeconds(3);
 
                 session = Utility.AttachExistingSession("Ondulus Radar Launcher");
+                //var pageSource = new PageSource(session);
+                //string tree = pageSource.txtTree;
+                //context.WriteLine(tree);
                 string  id = session.SessionId.ToString();
                 var source = session.PageSource;
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(source);
+
+                var pageSource = new PageSource(source);
+                
+                string tree = pageSource.dumpNodeTree();
+                context.WriteLine(tree);
 
                 context.WriteLine("session process id ="+id);
                 context.WriteLine("session source =" + source);
@@ -68,5 +77,8 @@ namespace art.Radar
 
             }
         }
+
+
+ 
     }
 }
